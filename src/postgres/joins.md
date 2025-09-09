@@ -30,9 +30,12 @@ Able to...
 
 Questions
 
-1. Which customers have matching orders?  
-2. Which customers do not have any orders?  
-3. Which orders do not match any existing customers?  
+1. Which customers have matching orders?
+   c1 & c2
+2. Which customers do not have any orders?
+    c3 & c4
+3. Which orders do not match any existing customers?
+   o5 & o6
 
 ---
 
@@ -55,11 +58,17 @@ Result
 Questions
 
 1. Which customers are not included in the result?
+     c3-Carol & c4-David
 2. Why do you think they are not in the result?
+     because they dont have any orders
 3. Which orders are not included in the result?
+    o5 & o6
 4. Why do you think they are not in the result?
+    because they are not existing in the customers table
 5. When is a row from Customers or Orders included?
+     when the data is existing in both the tables and matched the query of
 6. What is the meaning of INNER JOIN?
+   It combines rows from two or more tables based on the given query.
 
 ---
 
@@ -84,6 +93,7 @@ Result
 Questions
 
 1. Which customers are not included in the result?
+   c5 & c6
 2. Which orders are not included in the result?
 3. When is a row included?
 4. What is the meaning of LEFT OUTER JOIN?
