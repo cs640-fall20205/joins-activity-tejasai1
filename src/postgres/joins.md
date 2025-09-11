@@ -93,13 +93,13 @@ Result
 Questions
 
 1. Which customers are not included in the result?
-   c5 & c6
+   All the customers are included
 2. Which orders are not included in the result?
-   Orders of Carol & David are not included
+   Orders o5 & o6
 3. When is a row included?
-   
+   row is included, if a row in the customers table has a matching customer_id in the Orders table
 4. What is the meaning of LEFT OUTER JOIN?
-
+   left outer join returns all rows from the left table and matching tables from the right table.
 
 ---
 
@@ -125,9 +125,13 @@ Result
 Questions
 
 1. Which customers are not included in the result?
+   Customers Carol & David
 2. Which orders are not included in the result?
+   All the orders are included
 3. When is a row included?
+   A row is included if it comes from Orders table with matching customer data included
 4. What is the meaning of RIGHT OUTER JOIN?
+   Right Outer Join returns all rows from the right-hand table and any matching rows from the left-hand table
 
 ---
 
@@ -154,10 +158,13 @@ Result
 Questions
 
 1. Which customers are not included in the result?
+   All the customers are included in the result, Customers with Order_id 5&6 data is not available
 2. Which orders are not included in the result?
+   All the orders are included
 3. When is a row included?
+   row is included when it exists in both the tables
 4. What is the meaning of FULL JOIN?
-
+   Full Join returns all the rows from both the left table and right table
 ---
 
 ## Model 6
@@ -165,5 +172,53 @@ Questions
 Confirm the above by creating the tables in Postgres and running the queries. Paste the SQL for creating and populating the tables below.
 
 ```sql
+
+ #Customers Table
+CREATE TABLE Customers (   customer_id VARCHAR(10) PRIMARY KEY,
+   customer_name VARCHAR(50)
+    );
+
+ #Orders Table
+  CREATE TABLE Orders (
+   order_id VARCHAR(10) PRIMARY KEY,
+   customer_id VARCHAR(10),
+  );
+
+
+ # Inserting Data into Customers table
+    INSERT INTO Customers (customer_id,   customer_name) VALUES
+     ('c1', 'Alice'),
+     ('c2', 'Bob'),
+      ('c3', 'Carol'),
+      ('c4', 'David');
+
+  # Inserting Data into Orders table
+     INSERT INTO Orders (order_id, customer_id) VALUES
+      ('o1', 'c1'),
+       ('o2', 'c2'),
+       ('o5', 'c5'),
+      ('o6', 'c6');
+
+
+ # Inner Join Query
+   SELECT c.customer_id, c.customer_name, o.order_id
+   FROM Customers c
+    INNER JOIN Orders o ON c.customer_id = o.customer_id;
+
+# Left Join query
+   SELECT c.customer_id, c.customer_name, o.order_id
+    FROM Customers c
+    LEFT JOIN Orders o ON c.customer_id = o.customer_id;
+
+# Right Join Query
+   SELECT c.customer_id, c.customer_name, o.order_id
+   FROM Customers c
+    RIGHT JOIN Orders o ON c.customer_id = o.customer_id;
+
+# Full Join
+   SELECT c.customer_id, c.customer_name, o.order_id
+   FROM Customers c
+   FULL JOIN Orders o ON c.customer_id = o.customer_id;
+
 
 ```
